@@ -1,0 +1,14 @@
+.menu {
+  display: inline-flex;
+   margin: 10px;  
+  
+}
+.App {
+  align-items: center;
+}
+
+table {
+  border: 1px solid black;
+}
+
+
