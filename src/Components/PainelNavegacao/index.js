@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = [];
-const settings = ['Perfil', 'Conta', 'Dashboard', 'Sair'];
+const settings = ['Sair'];
 
 
 function PainelNavegacao() {
@@ -69,7 +69,7 @@ function PainelNavegacao() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+            <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"

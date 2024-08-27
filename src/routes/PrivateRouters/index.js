@@ -2,16 +2,16 @@ import PaginaCadastro from "../../pages/PaginaCadastro";
 import PaginaTarefa from "../../pages/PaginaTarefa";
 
 const PrivateRoutes = {
-    path : '/',
+    path: '/private/',
     children: [
         {
-           path: 'tarefa',
-           element: <PaginaTarefa />
+            path: 'tarefa',
+            element: <PaginaTarefa />
         },
         {
             path: 'cadastro',
             element: <PaginaCadastro />
-         }
+        }
     ]
 }
 

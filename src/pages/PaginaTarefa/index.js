@@ -16,7 +16,6 @@ function PaginaTarefa() {
 
             <CardTarefa />
 
-
         </Box>
 
     );

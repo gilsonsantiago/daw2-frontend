@@ -2,13 +2,8 @@
 import PaginaLogin from "../../pages/PaginaLogin";
 
 const PublicRoutes = {
-    path : '/',
-    children: [
-        {
-           path: 'login',
-           element: <PaginaLogin />
-        }
-    ]
-}  
+    path: '/',
+    element: <PaginaLogin />
+}
 
 export default PublicRoutes;
