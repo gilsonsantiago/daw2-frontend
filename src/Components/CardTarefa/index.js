@@ -56,7 +56,7 @@ function CardTarefa(){
               },
             }}
             pageSizeOptions={[5, 10]}
-            checkboxSelection
+            
           />
     </Grid>
     )
