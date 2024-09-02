@@ -1,6 +1,7 @@
 import React from "react";
 import CardTarefa from "../../Components/CardTarefa";
 import PainelNavegacao from "../../Components/PainelNavegacao";
+import Botao from "../../Components/Botao";
 
 function PaginaTarefa(){
 
@@ -11,6 +12,7 @@ function PaginaTarefa(){
 
             <div>
                 <h1 align="center"> Listagem de Tarefas </h1>
+                <Botao />
             </div>
 
             <div>
