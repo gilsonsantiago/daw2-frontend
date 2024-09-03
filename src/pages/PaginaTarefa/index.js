@@ -1,7 +1,9 @@
 import React from "react";
 import CardTarefa from "../../Components/CardTarefa";
 import PainelNavegacao from "../../Components/PainelNavegacao";
-import { Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
+import Button from '@mui/material/Button';
+
 //import Grid from '@mui/material/Grid';
 
 
@@ -30,11 +32,11 @@ function PaginaTarefa() {
 
                     }}
                 >
+                 
+                    <Typography  variant="h4">Lista de Tarefas</Typography>
 
-                    <h1> Listagem de Tarefas </h1>
 
-                    <button>+</button>
-
+                    <Button variant="contained">Novo</Button>
 
                 </Box>
 
