@@ -9,6 +9,7 @@ function PaginaCadastro(){
         <>      
 
            <PainelNavegacao />  
+           
            <div>
 
              <h1 align="center"> Formulario de Cadastro de Tarefa </h1>            
