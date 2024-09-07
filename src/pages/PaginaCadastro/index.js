@@ -1,22 +1,57 @@
 import React from "react";
-import PainelNavegacao from "../../Components/PainelNavegacao";
+import TextField from '@mui/material/TextField';
+import { Box, Grid, Typography } from "@mui/material";
 
 
 function PaginaCadastro(){
 
     return(
 
-        <>      
+       <Box sx={{
+          width: "85%",
+          padding : "10px",
+          alignItems: 'center',
+          justifyContent: 'space-between'
 
-           <PainelNavegacao />  
-           
-           <div>
+        }}
+      >
+         <Typography   variant="h4" >
+               Cadastro de Tarefas
+         </Typography>
+         
+         <Grid>
 
-             <h1 align="center"> Formulario de Cadastro de Tarefa </h1>            
+             <TextField
+              autoFocus
+              required
+              margin="dense"
+              id="descricao"
+              name="descricao"
+              label="Descrição"
+              type="email"
+              fullWidth
+              variant="standard"
+          />
 
-           </div>
-        
-        </>
+           <TextField
+              autoFocus
+              required
+              margin="dense"
+              id="name"
+              name="email"
+              label="Email Address"
+              type="email"
+              fullWidth
+              variant="standard"
+
+          />
+
+         </Grid>
+
+
+      
+       </Box>  
+     
        
     );
 
