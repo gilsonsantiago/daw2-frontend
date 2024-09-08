@@ -68,8 +68,8 @@ function PaginaTarefa() {
 
             <CardTarefa />
 
-           <Box  sx={{
-                        width: "70%",
+            <Box  sx={{
+                        width: "75%",
                         padding : "10px",
                         display: "flex",
                         alignItems: 'center',
@@ -77,17 +77,17 @@ function PaginaTarefa() {
 
                     }}
             >
+               <Dialog
 
-            <Dialog
-
-                open={open}                  
+                    open={open}                  
                 >
+                    <DialogTitle > Cadastro de Tarefas </DialogTitle>
+
                     <DialogContent>
 
-                        <Cadastro  />   
+                        <Cadastro fechar= {handleClose} />   
 
-                        <Button variant="contained" onClick = { () => handleClose()}>Fechar</Button>
-
+                    
                     </DialogContent>    
                
                 </Dialog>
