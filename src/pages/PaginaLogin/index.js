@@ -19,7 +19,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Banabuie
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -61,7 +61,7 @@ function PaginaLogin() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -70,7 +70,7 @@ function PaginaLogin() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Seu email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -80,14 +80,14 @@ function PaginaLogin() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Senha"
               type="password"
               id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Lembrar"
             />
             <Button
               type="submit"
@@ -95,20 +95,20 @@ function PaginaLogin() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Acessar
             </Button>
 
             <Grid container>
 
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Esqueceu a senha?
                 </Link>
               </Grid>
               
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Não tem conta ? Cadastra-se"}
                 </Link>
               </Grid>
 
