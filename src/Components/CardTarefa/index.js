@@ -3,33 +3,76 @@ import { useEffect, useState } from 'react'
 
 import { DataGrid } from '@mui/x-data-grid';
 import Grid from '@mui/material/Grid';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 import Dados from "../../Dados/DadosTarefas.json";
-
-const columns = [
-  {
-    field: 'id',
-    headerName: '#',
-    width: 150
-  },
-  {
-    field: 'descricao',
-    headerName: 'Descrição',
-    width: 600
-  },
-  {
-    field: 'status',
-    headerName: 'Situação',
-    width: 130
-  }, 
-];
 
 
 function CardTarefa() {
 
   const [rows, setRows] = useState(Dados)
 
+  const [clickedRow, setClickedRow] = useState();
+
+  const onButtonClick = (e, row) => {
+    e.stopPropagation();
+    setClickedRow(row);
+  };
+  
+  const columns = [
+    {
+      field: 'id',
+      headerName: '#',
+      width: 150
+    },
+    {
+      field: 'descricao',
+      headerName: 'Descrição',
+      width: 600
+    },
+    {
+      field: 'status',
+      headerName: 'Situação',
+      width: 130
+    },
+    {
+      field: "deleteButton",
+      headerName: "Actions",
+      description: "Apagar",
+      sortable: false,
+      width: 160,
+      renderCell: (params) => {
+        return (
+          <Button
+            onClick={(e) => onButtonClick(e, params.row)}
+            variant="contained"
+          >
+            Apagar
+          </Button>
+        );
+      }
+    },
+    {
+      field: "mudeButton",
+      headerName: "Actions",
+      description: "Modificar",
+      sortable: false,
+      width: 160,
+      renderCell: (params) => {
+        return (
+          <Button sx={{ background: "red" }}
+            onClick={(e) => onButtonClick(e, params.row)}
+            variant="contained"
+          >
+            Alterar
+          </Button>
+        );
+      }
+    }
+  ];
+  
+
+ 
   /*useEffect(() => {
     const fetchRepos = async () => {
       const repos = await fetch('http://localhost:3700/tarefas' , { method: 'GET',
@@ -47,6 +90,7 @@ function CardTarefa() {
     fetchRepos();
 
   }) */
+ 
 
     
 
