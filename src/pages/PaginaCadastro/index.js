@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 
 function PaginaCadastro( { fechar }){
 
-  const reader = new FileReader();
   
    return(
 
@@ -21,18 +20,30 @@ function PaginaCadastro( { fechar }){
       >
                
          <Grid>
-
+          
              <TextField
-              autoFocus
-              required
-              margin="dense"
-              id="descricao"
-              name="descricao"
-              label="Descrição"
-              type="email"
-              fullWidth
-              variant="standard"
-          />
+                autoFocus
+                required
+                margin="dense"
+                id="descricao"
+                name="descricao"
+                label="Descrição"
+                type="email"
+                fullWidth
+                variant="standard"
+             />
+
+              <TextField
+                autoFocus
+                required
+                margin="dense"
+                id="situacao"
+                name="situacao"
+                label="Situação"
+                type="text"
+                fullWidth
+                variant="standard"
+               />
     
          </Grid>
 
@@ -48,8 +59,7 @@ function PaginaCadastro( { fechar }){
             <Button variant="contained" onClick={ () => { fechar() }}>Gravar</Button>
             <Button variant="contained" onClick={ () => { fechar() }}>Sair</Button>
 
-         </Box>
-        
+         </Box>     
       
        </Box>       
        
