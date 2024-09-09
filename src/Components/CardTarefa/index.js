@@ -17,6 +17,7 @@ function CardTarefa() {
   const onButtonClick = (e, row) => {
     e.stopPropagation();
     setClickedRow(row);
+    alert("Realmente deseja executar esta ação?");
   };
   
   const columns = [
@@ -28,7 +29,7 @@ function CardTarefa() {
     {
       field: 'descricao',
       headerName: 'Descrição',
-      width: 600
+      width: 800
     },
     {
       field: 'status',
@@ -90,9 +91,7 @@ function CardTarefa() {
     fetchRepos();
 
   }) */
- 
-
-    
+     
 
   return (
     <Box
