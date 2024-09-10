@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useNavigate } from 'react-router-dom';
+
 function Copyright(props) {
 
   return (
@@ -33,6 +35,8 @@ const defaultTheme = createTheme();
 
 function PaginaLogin() {
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -43,6 +47,7 @@ function PaginaLogin() {
   };
 
   return (
+
     <ThemeProvider theme={defaultTheme}>
 
       <Container component="main" maxWidth="xs">
@@ -56,7 +61,7 @@ function PaginaLogin() {
             flexDirection: 'column',
             alignItems: 'center',
           }}
-         >
+        >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -94,6 +99,7 @@ function PaginaLogin() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => navigate("/private/tarefa")}
             >
               Acessar
             </Button>
@@ -105,7 +111,7 @@ function PaginaLogin() {
                   Esqueceu a senha?
                 </Link>
               </Grid>
-              
+
               <Grid item>
                 <Link href="#" variant="body2">
                   {"Não tem conta ? Cadastra-se"}
