@@ -19,7 +19,7 @@ function CardTarefa() {
     setClickedRow(row);
     alert("Realmente deseja executar esta ação?");
   };
-  
+
   const columns = [
     {
       field: 'id',
@@ -29,7 +29,7 @@ function CardTarefa() {
     {
       field: 'descricao',
       headerName: 'Descrição',
-      width: 800
+      width: 550
     },
     {
       field: 'status',
@@ -71,9 +71,9 @@ function CardTarefa() {
       }
     }
   ];
-  
 
- 
+
+
   /*useEffect(() => {
     const fetchRepos = async () => {
       const repos = await fetch('http://localhost:3700/tarefas' , { method: 'GET',
@@ -91,7 +91,7 @@ function CardTarefa() {
     fetchRepos();
 
   }) */
-     
+
 
   return (
     <Box
