@@ -30,7 +30,7 @@ function PaginaTarefa() {
       };
     
 
-    const navigate = useNavigate();
+  //  const navigate = useNavigate();
 
     return (
 
@@ -86,7 +86,6 @@ function PaginaTarefa() {
                     <DialogContent>
 
                         <Cadastro fechar= {handleClose} />   
-
                     
                     </DialogContent>    
                

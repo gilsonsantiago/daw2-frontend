@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import { Box, Grid, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 
-
 function PaginaCadastro( { fechar }){
 
   
@@ -28,7 +27,7 @@ function PaginaCadastro( { fechar }){
                 id="descricao"
                 name="descricao"
                 label="Descrição"
-                type="email"
+                type="text"
                 fullWidth
                 variant="standard"
              />

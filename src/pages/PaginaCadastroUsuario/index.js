@@ -15,25 +15,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useNavigate } from 'react-router-dom';
 
-function Copyright(props) {
-
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Banabuie
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
-function PaginaLogin() {
+function PaginaCadastroUsuario() {
 
   const navigate = useNavigate();
 
@@ -62,11 +48,11 @@ function PaginaLogin() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Login
+        
+          <Typography component="h1" variant="h5" sx={{
+            marginTop: 10}}
+          >
+              Cadastro de Usuário
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -90,10 +76,7 @@ function PaginaLogin() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Lembrar"
-            />
+         
             <Button
               type="submit"
               fullWidth
@@ -101,30 +84,22 @@ function PaginaLogin() {
               sx={{ mt: 3, mb: 2 }}
               onClick={() => navigate("/private/tarefa")}
             >
-              Acessar
+              Cadastrar
             </Button>
 
             <Grid container>
 
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Esqueceu a senha?
+                <Link href="/" variant="body2">
+                  Retornar para o Login
                 </Link>
-              </Grid>
-
-              <Grid item>
-                <Link href="usuario" variant="body2">
-                  {"Não tem conta ? Cadastra-se"}
-                </Link>
-              </Grid>
+              </Grid>      
 
             </Grid>
 
           </Box>
 
-        </Box>
-
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Box>      
 
       </Container>
 
@@ -132,4 +107,4 @@ function PaginaLogin() {
   );
 }
 
-export default PaginaLogin;
+export default PaginaCadastroUsuario;

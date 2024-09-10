@@ -20,6 +20,21 @@ function CardTarefa() {
     alert("Realmente deseja executar esta ação?");
   };
 
+  const opcoes = [
+    { 
+      "id" : 1,
+      "situacao" : "Tarefa em Aberto"
+     },
+     {
+      "id" : 2,
+      "situacao" : "Fazendo"
+     },
+     {
+      "id" : 3,
+      "situacao" : "Encerrada"
+     }
+  ];
+
   const columns = [
     {
       field: 'id',
@@ -38,7 +53,7 @@ function CardTarefa() {
     },
     {
       field: "deleteButton",
-      headerName: "Actions",
+      headerName: "Apagar",
       description: "Apagar",
       sortable: false,
       width: 160,
@@ -55,7 +70,7 @@ function CardTarefa() {
     },
     {
       field: "mudeButton",
-      headerName: "Actions",
+      headerName: "Modificar",
       description: "Modificar",
       sortable: false,
       width: 160,
@@ -120,7 +135,7 @@ function CardTarefa() {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[5, 10]}
+          pageSizeOptions={[5, 8, 10]}
 
         />
       </Grid>
