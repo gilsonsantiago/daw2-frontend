@@ -11,10 +11,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-//import Grid from '@mui/material/Grid';
-
 import { useNavigate } from "react-router-dom";
-import Cadastro        from "../PaginaCadastro";
+import Cadastro from "../PaginaCadastro";
 
 
 function PaginaTarefa() {
@@ -23,14 +21,14 @@ function PaginaTarefa() {
 
     const handleClickOpen = () => {
         setOpen(true);
-      };
-    
-      const handleClose = () => {
-        setOpen(false);
-      };
-    
+    };
 
-  //  const navigate = useNavigate();
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
+    //  const navigate = useNavigate();
 
     return (
 
@@ -56,11 +54,11 @@ function PaginaTarefa() {
 
                     }}
                 >
-                 <Typography  variant="h4">
-                    Lista de Tarefas
-                 </Typography>
-                 
-                 <Button variant="contained" onClick = { () => handleClickOpen()}>Novo</Button>
+                    <Typography variant="h4">
+                        Lista de Tarefas
+                    </Typography>
+
+                    <Button variant="contained" onClick={() => handleClickOpen()}>Novo</Button>
 
                 </Box>
 
@@ -68,30 +66,30 @@ function PaginaTarefa() {
 
             <CardTarefa />
 
-            <Box  sx={{
-                        width: "75%",
-                        padding : "10px",
-                        display: "flex",
-                        alignItems: 'center',
-                        justifyContent: 'space-between'
+            <Box sx={{
+                width: "75%",
+                padding: "10px",
+                display: "flex",
+                alignItems: 'center',
+                justifyContent: 'space-between'
 
-                    }}
+            }}
             >
-               <Dialog
+                <Dialog
 
-                    open={open}                  
+                    open={open}
                 >
                     <DialogTitle > Cadastro de Tarefas </DialogTitle>
 
                     <DialogContent>
 
-                        <Cadastro fechar= {handleClose} />   
-                    
-                    </DialogContent>    
-               
+                        <Cadastro fechar={handleClose} />
+
+                    </DialogContent>
+
                 </Dialog>
 
-           </Box>           
+            </Box>
 
         </Box>
 

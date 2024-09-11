@@ -21,18 +21,18 @@ function CardTarefa() {
   };
 
   const opcoes = [
-    { 
-      "id" : 1,
-      "situacao" : "Tarefa em Aberto"
-     },
-     {
-      "id" : 2,
-      "situacao" : "Fazendo"
-     },
-     {
-      "id" : 3,
-      "situacao" : "Encerrada"
-     }
+    {
+      "id": 1,
+      "situacao": "Tarefa em Aberto"
+    },
+    {
+      "id": 2,
+      "situacao": "Fazendo"
+    },
+    {
+      "id": 3,
+      "situacao": "Encerrada"
+    }
   ];
 
   const columns = [
@@ -105,7 +105,7 @@ function CardTarefa() {
 
     fetchRepos();
 
-  }) */
+  }, []) */
 
 
   return (
