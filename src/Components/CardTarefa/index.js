@@ -5,12 +5,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import Grid from '@mui/material/Grid';
 import { Box, Button } from '@mui/material';
 
-import Dados from "../../Dados/DadosTarefas.json";
-
+// import Dados from "../../Dados/DadosTarefas.json";
+import Api from '../../services/api';
 
 function CardTarefa() {
 
-  const [rows, setRows] = useState(Dados)
+  const [rows, setRows] = useState([])
 
   const [clickedRow, setClickedRow] = useState();
 
@@ -89,23 +89,13 @@ function CardTarefa() {
 
 
 
-  /*useEffect(() => {
-    const fetchRepos = async () => {
-      const repos = await fetch('http://localhost:3700/tarefas' , { method: 'GET',
-        headers: {
-        'Accept' : 'application/json' ,
-        'Content-Type' : 'application/json' ,
-        'Access-Control-Allow-Origin'  : '*' 
-        }})
+ useEffect(() => {
+    const data = Api.readTarefa();   
+    setRows(data);
 
-        console.log(repos);
-      const data = await repos.json()
-      setRows(data)
-    }
+    console.log(data);
 
-    fetchRepos();
-
-  }, []) */
+  }, []) 
 
 
   return (
