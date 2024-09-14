@@ -1,16 +1,18 @@
 import PaginaCadastro from "../../pages/PaginaCadastro";
-import PaginaTarefa from "../../pages/PaginaTarefa";
+import PaginaTarefa   from "../../pages/PaginaTarefa";
+
+import ProtecterRouter from '../../security/ProtecterRouter';
 
 const PrivateRoutes = {
     path: '/private/',
     children: [
         {
             path: 'tarefa',
-            element: <PaginaTarefa />
+            element: <ProtecterRouter  element= {<PaginaTarefa  />}/>
         },
         {
             path: 'cadastro',
-            element: <PaginaCadastro />
+            element: <ProtecterRouter  element= {<PaginaCadastro/>}/>
         }
     ]
 }

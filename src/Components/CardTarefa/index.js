@@ -87,16 +87,37 @@ function CardTarefa() {
     }
   ];
 
+  const [dado1, setDado1] = useState([]);
 
+  useEffect(() => {
 
- useEffect(() => {
-    const data = Api.readTarefa();   
-    setRows(data);
+    // setRows(data);
 
-    console.log(data);
+    //console.log(Api.readTarefa().);  
 
-  }, []) 
+    Api.readTarefa().then(({ data }) => {
 
+      /*
+      console.log('DATA');
+      console.log(response.data.data);
+      //setRows(response.data.data);
+      console.log("ATRIBUTOS");
+      console.log(data.data.data[0].attributes);
+
+      const resposta = response.data.data[0].attributes;
+      */
+
+      //   console.log(data.data);
+
+      setDado1(data.data)
+
+      //   setRows(data.data);
+
+    })
+
+  }, [])
+
+  dado1.map((objeto) => console.log(objeto));
 
   return (
     <Box
