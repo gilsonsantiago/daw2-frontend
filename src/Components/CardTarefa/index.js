@@ -11,13 +11,18 @@ import Api, { readTarefa } from '../../services/api';
 function CardTarefa() {
 
   const [rows, setRows] = useState([])
-
   const [clickedRow, setClickedRow] = useState();
 
   const onButtonClick = (e, row) => {
     e.stopPropagation();
     setClickedRow(row);
-    alert("Realmente deseja executar esta ação?");
+    alert("Realmente deseja modificar o estado?");
+  };
+
+  const onButtonDelete = (e, row) => {
+    e.stopPropagation();
+    setClickedRow(row);
+    alert("Realmente deseja apagar?");
   };
 
   const opcoes = [
@@ -60,7 +65,7 @@ function CardTarefa() {
       renderCell: (params) => {
         return (
           <Button
-            onClick={(e) => onButtonClick(e, params.row)}
+            onClick={(e) => onButtonDelete(e, params.row)}
             variant="contained"
           >
             Apagar
@@ -99,7 +104,7 @@ function CardTarefa() {
   /************************************************ */
   function lerDados(){
 
-     readTarefa("http://localhost:1337/api/jobs")
+     readTarefa("")
      .then(({data}) => {
                         const da = data.data
                         const novada = da.map((d) => ({id: d.id, nome : d.attributes.nome, descricao : d.attributes.descricao, situacao : d.attributes.si }))

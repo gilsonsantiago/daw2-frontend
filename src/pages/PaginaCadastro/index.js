@@ -1,11 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TextField from '@mui/material/TextField';
 import { Box, Grid, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import api, { createTarefa } from "../../services/api";
+
+
+
+import axios from "axios";
+
 
 function PaginaCadastro( { fechar }){
 
+   const [descricao, setDescricao] = useState("");
+   const [situacao , setSituacao]  = useState("");
+   const [datacada , setDatacada]  = useState("");
+
+   const handleChange = (event) => {
+     setSituacao(event.target.value);
+   };
+
+
+  /************************************************ */
+  function gravarDados(){
+
+   const dadostarefa = {
+    "data" : {
+         "descricao" : descricao,    
+         "datacadastro" : datacada
+      }
+   }
+
+   console.log("dados: " + JSON.stringify(dadostarefa));
+
+   axios.post("http://localhost:1337/jobs", 
+      JSON.stringify(dadostarefa),
+      { mode: "no-cors", headers: {
+         "Access-Control-Allow-Origin": "*",
+         "Access-Control-Allow-Headers": "Authorization", 
+         "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
+         "Content-Type": "application/json;charset=UTF-8"     
+     }})
+   .then(({data}) => {  console.log(data.data) })
+   .catch((error) => console.log(error))   
+  }
   
    return(
 
@@ -15,13 +57,11 @@ function PaginaCadastro( { fechar }){
           alignItems: 'center',
           justifyContent: 'space-between'
 
-        }}
-      >
-               
-         <Grid>
-          
-             <TextField
-                autoFocus
+          }}
+        >
+         
+                    
+            <TextField      
                 required
                 margin="dense"
                 id="descricao"
@@ -29,22 +69,46 @@ function PaginaCadastro( { fechar }){
                 label="Descrição"
                 type="text"
                 fullWidth
+                value={descricao}
                 variant="standard"
-             />
+                onChange={(e) => setDescricao(e.target.value)}
 
-              <TextField
-                autoFocus
+             />   
+
+               <TextField      
                 required
                 margin="dense"
-                id="situacao"
-                name="situacao"
-                label="Situação"
-                type="text"
+                id="datacada"
+                name="datacada"              
+                type="date"
                 fullWidth
+                value={datacada}
                 variant="standard"
-               />
-    
-         </Grid>
+                onChange={(e) => setDatacada(e.target.value)}
+
+             />    
+
+                     
+            <FormControl fullWidth  sx={{ marginTop : "15px" }}>
+
+            <InputLabel id="label-situacao">Situação</InputLabel>
+
+            <Select
+
+               labelId="demo-simple-select-label"
+               id="situacao"
+               name="situacao"
+               value={situacao}
+               label="Situação"
+               onChange={handleChange}
+            >
+               <MenuItem value={20}>Aberta</MenuItem>
+               <MenuItem value={20}>Terminada</MenuItem>
+                              
+            </Select>
+
+            </FormControl>    
+          
 
          <Box sx={{
               width: "85%",
@@ -55,7 +119,7 @@ function PaginaCadastro( { fechar }){
 
             }}>
 
-            <Button variant="contained" onClick={ () => { fechar() }}>Gravar</Button>
+            <Button variant="contained" onClick={ () => { gravarDados() }}>Gravar</Button>
             <Button variant="contained" onClick={ () => { fechar() }}>Sair</Button>
 
          </Box>     
