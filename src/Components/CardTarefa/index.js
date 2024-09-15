@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import { Box, Button } from '@mui/material';
 
 // import Dados from "../../Dados/DadosTarefas.json";
-import Api from '../../services/api';
+import Api, { readTarefa } from '../../services/api';
 
 function CardTarefa() {
 
@@ -39,7 +39,7 @@ function CardTarefa() {
     {
       field: 'id',
       headerName: '#',
-      width: 150
+      width: 60
     },
     {
       field: 'descricao',
@@ -47,7 +47,7 @@ function CardTarefa() {
       width: 550
     },
     {
-      field: 'status',
+      field: 'situacao',
       headerName: 'Situação',
       width: 130
     },
@@ -90,13 +90,23 @@ function CardTarefa() {
 
 
  useEffect(() => {
-    const data = Api.readTarefa();   
-    setRows(data);
 
-    console.log(data);
-
+     lerDados();
+   
   }, []) 
 
+ 
+  /************************************************ */
+  function lerDados(){
+
+     readTarefa("http://localhost:1337/api/jobs")
+     .then(({data}) => {
+                        const da = data.data
+                        const novada = da.map((d) => ({id: d.id, nome : d.attributes.nome, descricao : d.attributes.descricao, situacao : d.attributes.si }))
+                        setRows(novada)                       
+                      })
+     .catch((error) => console.log(error))   
+  }
 
   return (
     <Box
