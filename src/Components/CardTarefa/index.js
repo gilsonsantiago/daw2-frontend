@@ -6,18 +6,23 @@ import Grid from '@mui/material/Grid';
 import { Box, Button } from '@mui/material';
 
 // import Dados from "../../Dados/DadosTarefas.json";
-import Api from '../../services/api';
+import Api, { readTarefa } from '../../services/api';
 
 function CardTarefa() {
 
   const [rows, setRows] = useState([])
-
   const [clickedRow, setClickedRow] = useState();
 
   const onButtonClick = (e, row) => {
     e.stopPropagation();
     setClickedRow(row);
-    alert("Realmente deseja executar esta ação?");
+    alert("Realmente deseja modificar o estado?");
+  };
+
+  const onButtonDelete = (e, row) => {
+    e.stopPropagation();
+    setClickedRow(row);
+    alert("Realmente deseja apagar?");
   };
 
   const opcoes = [
@@ -39,7 +44,7 @@ function CardTarefa() {
     {
       field: 'id',
       headerName: '#',
-      width: 150
+      width: 60
     },
     {
       field: 'descricao',
@@ -47,7 +52,7 @@ function CardTarefa() {
       width: 550
     },
     {
-      field: 'status',
+      field: 'situacao',
       headerName: 'Situação',
       width: 130
     },
@@ -60,7 +65,7 @@ function CardTarefa() {
       renderCell: (params) => {
         return (
           <Button
-            onClick={(e) => onButtonClick(e, params.row)}
+            onClick={(e) => onButtonDelete(e, params.row)}
             variant="contained"
           >
             Apagar
@@ -89,35 +94,24 @@ function CardTarefa() {
 
   const [dado1, setDado1] = useState([]);
 
-  useEffect(() => {
+ useEffect(() => {
 
-    // setRows(data);
+     lerDados();
+   
+  }, []) 
 
-    //console.log(Api.readTarefa().);  
+ 
+  /************************************************ */
+  function lerDados(){
 
-    Api.readTarefa().then(({ data }) => {
-
-      /*
-      console.log('DATA');
-      console.log(response.data.data);
-      //setRows(response.data.data);
-      console.log("ATRIBUTOS");
-      console.log(data.data.data[0].attributes);
-
-      const resposta = response.data.data[0].attributes;
-      */
-
-      //   console.log(data.data);
-
-      setDado1(data.data)
-
-      //   setRows(data.data);
-
-    })
-
-  }, [])
-
-  dado1.map((objeto) => console.log(objeto));
+     readTarefa("")
+     .then(({data}) => {
+                        const da = data.data
+                        const novada = da.map((d) => ({id: d.id, nome : d.attributes.nome, descricao : d.attributes.descricao, situacao : d.attributes.si }))
+                        setRows(novada)                       
+                      })
+     .catch((error) => console.log(error))   
+  }
 
   return (
     <Box

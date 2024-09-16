@@ -33,6 +33,7 @@ function PaginaTarefa() {
     return (
 
         <Box>
+            
             <PainelNavegacao />
 
             <Box
@@ -73,12 +74,12 @@ function PaginaTarefa() {
                 alignItems: 'center',
                 justifyContent: 'space-between'
 
-            }}
-            >
+               }}
+             >
                 <Dialog
 
                     open={open}
-                >
+                 >
                     <DialogTitle > Cadastro de Tarefas </DialogTitle>
 
                     <DialogContent>
