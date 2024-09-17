@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useAuth } from '../../security/AuthProvider';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -34,6 +35,13 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 function PaginaLogin() {
+
+  const { login } = useAuth();
+
+  const fazerLogin = () => {
+    login();
+    navigate("/private/tarefa");
+  }
 
   const navigate = useNavigate();
 
@@ -99,7 +107,7 @@ function PaginaLogin() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => navigate("/private/tarefa")}
+              onClick={() => { fazerLogin() }}
             >
               Acessar
             </Button>
