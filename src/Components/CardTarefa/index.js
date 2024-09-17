@@ -6,7 +6,10 @@ import Grid from '@mui/material/Grid';
 import { Box, Button } from '@mui/material';
 
 // import Dados from "../../Dados/DadosTarefas.json";
+
 import Api, { readTarefa } from '../../services/api';
+
+import axios from "axios";
 
 function CardTarefa() {
 
@@ -94,23 +97,23 @@ function CardTarefa() {
 
   const [dado1, setDado1] = useState([]);
 
- useEffect(() => {
+  useEffect(() => {
 
-     lerDados();
-   
-  }, []) 
+    lerDados();
 
- 
+  }, [])
+
+
   /************************************************ */
-  function lerDados(){
+  function lerDados() {
 
-     readTarefa("")
-     .then(({data}) => {
-                        const da = data.data
-                        const novada = da.map((d) => ({id: d.id, nome : d.attributes.nome, descricao : d.attributes.descricao, situacao : d.attributes.si }))
-                        setRows(novada)                       
-                      })
-     .catch((error) => console.log(error))   
+    readTarefa("")
+      .then(({ data }) => {
+        const da = data.data
+        const novada = da.map((d) => ({ id: d.id, nome: d.attributes.nome, descricao: d.attributes.descricao, situacao: d.attributes.si }))
+        setRows(novada)
+      })
+      .catch((error) => console.log(error))
   }
 
   return (

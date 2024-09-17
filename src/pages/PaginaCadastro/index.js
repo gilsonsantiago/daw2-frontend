@@ -14,82 +14,87 @@ import api, { createTarefa } from "../../services/api";
 import axios from "axios";
 
 
-function PaginaCadastro( { fechar }){
+function PaginaCadastro({ fechar }) {
 
    const [descricao, setDescricao] = useState("");
-   const [situacao , setSituacao]  = useState("");
-   const [datacada , setDatacada]  = useState("");
+   const [situacao, setSituacao] = useState("");
+   const [datacada, setDatacada] = useState("");
 
    const handleChange = (event) => {
-     setSituacao(event.target.value);
+      setSituacao(event.target.value);
    };
 
 
-  /************************************************ */
-  function gravarDados(){
+   /************************************************ */
+   function gravarDados() {
 
-   const dadostarefa = {
-    "data" : {
-         "descricao" : descricao,    
-         "datacadastro" : datacada
+      const dadostarefa = {
+         "data": {
+            "descricao": descricao,
+            "datacadastro": datacada
+         }
       }
+
+      console.log("dados: " + JSON.stringify(dadostarefa));
+
+      axios.post("http://localhost:1337/api/jobs", {
+         headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+         }
+      },
+         {
+            "data": {
+               "descricao": descricao,
+               "datacadastro": datacada
+            }
+         },
+      )
+         .then(({ dado }) => { console.log(dado.data) })
+         .catch((error) => console.log(error))
    }
 
-   console.log("dados: " + JSON.stringify(dadostarefa));
+   return (
 
-   axios.post("http://localhost:1337/jobs", 
-      JSON.stringify(dadostarefa),
-      { mode: "no-cors", headers: {
-         "Access-Control-Allow-Origin": "*",
-         "Access-Control-Allow-Headers": "Authorization", 
-         "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
-         "Content-Type": "application/json;charset=UTF-8"     
-     }})
-   .then(({data}) => {  console.log(data.data) })
-   .catch((error) => console.log(error))   
-  }
-  
-   return(
+      <Box sx={{
+         width: "95%",
+         padding: "5px",
+         alignItems: 'center',
+         justifyContent: 'space-between'
 
-       <Box sx={{
-          width: "95%",
-          padding : "5px",
-          alignItems: 'center',
-          justifyContent: 'space-between'
+      }}
+      >
 
-          }}
-        >
-         
-                    
-            <TextField      
-                required
-                margin="dense"
-                id="descricao"
-                name="descricao"
-                label="Descrição"
-                type="text"
-                fullWidth
-                value={descricao}
-                variant="standard"
-                onChange={(e) => setDescricao(e.target.value)}
 
-             />   
+         <TextField
+            required
+            margin="dense"
+            id="descricao"
+            name="descricao"
+            label="Descrição"
+            type="text"
+            fullWidth
+            value={descricao}
+            variant="standard"
+            onChange={(e) => setDescricao(e.target.value)}
 
-               <TextField      
-                required
-                margin="dense"
-                id="datacada"
-                name="datacada"              
-                type="date"
-                fullWidth
-                value={datacada}
-                variant="standard"
-                onChange={(e) => setDatacada(e.target.value)}
+         />
 
-             />    
+         <TextField
+            required
+            margin="dense"
+            id="datacada"
+            name="datacada"
+            type="date"
+            fullWidth
+            value={datacada}
+            variant="standard"
+            onChange={(e) => setDatacada(e.target.value)}
 
-                     
-            <FormControl fullWidth  sx={{ marginTop : "15px" }}>
+         />
+
+
+         <FormControl fullWidth sx={{ marginTop: "15px" }}>
 
             <InputLabel id="label-situacao">Situação</InputLabel>
 
@@ -104,29 +109,29 @@ function PaginaCadastro( { fechar }){
             >
                <MenuItem value={20}>Aberta</MenuItem>
                <MenuItem value={20}>Terminada</MenuItem>
-                              
+
             </Select>
 
-            </FormControl>    
-          
+         </FormControl>
+
 
          <Box sx={{
-              width: "85%",
-              padding : "10px",
-              display: "flex",
-              alignItems: 'center',
-              justifyContent: 'space-between'
+            width: "85%",
+            padding: "10px",
+            display: "flex",
+            alignItems: 'center',
+            justifyContent: 'space-between'
 
-            }}>
+         }}>
 
-            <Button variant="contained" onClick={ () => { gravarDados() }}>Gravar</Button>
-            <Button variant="contained" onClick={ () => { fechar() }}>Sair</Button>
+            <Button variant="contained" onClick={() => { gravarDados() }}>Gravar</Button>
+            <Button variant="contained" onClick={() => { fechar() }}>Sair</Button>
 
-         </Box>     
-      
-       </Box>       
-       
-    );
+         </Box>
+
+      </Box>
+
+   );
 
 }
 
