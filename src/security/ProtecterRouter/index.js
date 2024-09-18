@@ -4,9 +4,9 @@ import { useAuth } from '../AuthProvider';
 
 const ProtecterRouter = ({ element }) => {
 
-    const { isAuthenticated } = useAuth();
+    const { token } = useAuth();
 
-    return isAuthenticated ? element : < Navigate to="/" />;
+    return token ? element : < Navigate to="/" />;
 }
 
 export default ProtecterRouter;

@@ -3,14 +3,14 @@ import React, { createContext, useContext, useState } from "react";
 const AuthContext = createContext(undefined);
 
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticad] = useState(false);
+    const [token, setToken] = useState(null);
 
-    const login = () => setIsAuthenticad(true);
-    const logout = () => setIsAuthenticad(false);
+    const login = (returnedtoken) => setToken(returnedtoken);
+    const logout = () => setToken(null);
 
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ token, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

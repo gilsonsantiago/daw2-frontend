@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAuth } from '../../security/AuthProvider';
+import api from "../../services/api";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -36,23 +37,34 @@ const defaultTheme = createTheme();
 
 function PaginaLogin() {
 
-  const { login } = useAuth();
-
-  const fazerLogin = () => {
-    login();
-    navigate("/private/tarefa");
-  }
+  const [email, setEmail] = useState("user1@user.com");
+  const [senha, setSenha] = useState("123456");
 
   const navigate = useNavigate();
+  const { login } = useAuth;
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const fazerLogin = () => {
+
+    if (email.trim() !== "" && senha.trim() !== "") {
+      api.login(
+        {
+          identifier: email,
+          password: senha,
+        }
+      ).then((response) => {
+
+        login(response.data.jwt);
+
+        navigate("/private/tarefa");
+      }).catch((error) => {
+        console.log(error);
+      })
+
+    }
+
+
+  }
+
 
   return (
 
@@ -77,7 +89,7 @@ function PaginaLogin() {
             Login
           </Typography>
 
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -103,7 +115,6 @@ function PaginaLogin() {
               label="Lembrar"
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
