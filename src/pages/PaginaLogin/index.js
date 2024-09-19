@@ -37,31 +37,36 @@ const defaultTheme = createTheme();
 
 function PaginaLogin() {
 
-  const [email, setEmail] = useState("user1@user.com");
-  const [senha, setSenha] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   const navigate = useNavigate();
-  const { login } = useAuth;
+  const { logar } = useAuth;
 
   const fazerLogin = () => {
+  
+    console.log('usu: ' + email, 'senha: ' + senha);
+
 
     if (email.trim() !== "" && senha.trim() !== "") {
-      api.login(
+
+      api.logar(
         {
           identifier: email,
           password: senha,
         }
       ).then((response) => {
+         console.log(response.data.jwt);         
+         logar(response.data.jwt);
+         navigate("/private/tarefa");
 
-        login(response.data.jwt);
-
-        navigate("/private/tarefa");
-      }).catch((error) => {
-        console.log(error);
+      }).catch((error) => {       
+          console.log(error);
       })
 
     }
-
+      
+      
 
   }
 
@@ -86,7 +91,7 @@ function PaginaLogin() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+           Acessar
           </Typography>
 
           <Box noValidate sx={{ mt: 1 }}>
@@ -99,7 +104,10 @@ function PaginaLogin() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={e => setEmail(e.target.value)}
+
             />
+        
             <TextField
               margin="normal"
               required
@@ -109,7 +117,9 @@ function PaginaLogin() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={e => setSenha(e.target.value)}
             />
+          
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Lembrar"

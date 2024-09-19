@@ -12,13 +12,11 @@ export const readTarefa = async () => {
     return await api.get("/jobs");
 }
 
-export const login = async (loginData) => {
+export const logar = async (loginData) => {
     return await api.post("/auth/local", loginData);
 }
 
 
 export default {
-    createTarefa,
-    readTarefa,
-    login
+    logar   
 };
