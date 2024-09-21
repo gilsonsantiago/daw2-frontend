@@ -13,7 +13,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAuth } from '../../security/AuthProvider';
-import api from "../../services/api";
+import api, { readTarefa, login, createTarefa} from "../../services/api";
+
+import { logar} from '../../security/AuthProvider';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -35,40 +37,47 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+
+/************************************************************ */
 function PaginaLogin() {
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const navigate = useNavigate();
-  const { logar } = useAuth;
+  const navigate = useNavigate();  
+//  const { logar } = AuthProvider
 
-  const fazerLogin = () => {
-  
-    console.log('usu: ' + email, 'senha: ' + senha);
+  const fazerLogin = () => {  
+ 
+   if (email.trim() !== "" && senha.trim() !== "") {
 
-
-    if (email.trim() !== "" && senha.trim() !== "") {
-
-      api.logar(
+      login(
         {
           identifier: email,
           password: senha,
         }
       ).then((response) => {
-         console.log(response.data.jwt);         
-         logar(response.data.jwt);
-         navigate("/private/tarefa");
+         console.log(response.data.jwt);    
+         
+         logado(response.data.jwt);
+
+         navigate("/private/tarefa")       
 
       }).catch((error) => {       
           console.log(error);
       })
-
-    }
       
-      
+    }            
 
   }
+
+  function logado(tk){
+    //  logar(tk);
+      return (
+         navigate("/private/tarefa")
+      );
+
+  } 
 
 
   return (

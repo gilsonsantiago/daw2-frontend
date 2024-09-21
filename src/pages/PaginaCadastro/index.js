@@ -9,10 +9,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import api, { createTarefa } from "../../services/api";
 
-
-
 import axios from "axios";
-
 
 function PaginaCadastro({ fechar }) {
 
@@ -37,12 +34,7 @@ function PaginaCadastro({ fechar }) {
 
       console.log("dados: " + JSON.stringify(dadostarefa));
 
-      axios.post("http://localhost:1337/api/jobs", {
-         headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-         }
-      },
+      axios.post("http://localhost:1337/api/jobs",
          {
             "data": {
                "descricao": descricao,
@@ -50,7 +42,10 @@ function PaginaCadastro({ fechar }) {
             }
          },
       )
-         .then(({ dado }) => { console.log(dado.data) })
+         .then(({data }) => { 
+            console.log(data.data);
+            fechar();
+          })
          .catch((error) => console.log(error))
    }
 

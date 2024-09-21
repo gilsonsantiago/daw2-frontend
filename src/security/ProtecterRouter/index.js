@@ -6,7 +6,8 @@ const ProtecterRouter = ({ element }) => {
 
     const { token } = useAuth();
 
-    return token ? element : < Navigate to="/" />;
+    return token ? element : element;
+
 }
 
 export default ProtecterRouter;

@@ -16,10 +16,12 @@ function CardTarefa() {
   const [rows, setRows] = useState([])
   const [clickedRow, setClickedRow] = useState();
 
+
   const onButtonClick = (e, row) => {
     e.stopPropagation();
     setClickedRow(row);
     alert("Realmente deseja modificar o estado?");
+    console.log(clickedRow);
   };
 
   const onButtonDelete = (e, row) => {
@@ -101,7 +103,7 @@ function CardTarefa() {
 
     lerDados();
 
-  }, [])
+  }, [rows])
 
 
   /************************************************ */

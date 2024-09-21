@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = axios.create({
+export const api = axios.create({
     baseURL: "http://localhost:1337/api"
 });
 
@@ -12,11 +12,29 @@ export const readTarefa = async () => {
     return await api.get("/jobs");
 }
 
-export const logar = async (loginData) => {
+export const login = async (loginData) => {
     return await api.post("/auth/local", loginData);
 }
 
 
-export default {
-    logar   
+export default api;
+
+/*
+
+const api = axios.create({
+    baseURL: "http://localhost:1337/api"
+});
+
+export async function createTarefa(tarefaData){
+    return await axios.post("/jobs", tarefaData);
 };
+
+export async function readTarefa() {
+    return await api.get("/jobs");
+};
+
+export async function login(loginData){
+    return await api.post("/auth/local", loginData);
+};
+
+*/
