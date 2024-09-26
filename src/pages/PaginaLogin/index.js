@@ -45,7 +45,8 @@ function PaginaLogin() {
   const [senha, setSenha] = useState("");
 
   const navigate = useNavigate();  
-//  const { logar } = AuthProvider
+
+  const { setToken } = useAuth();
 
   const fazerLogin = () => {  
  
@@ -57,14 +58,17 @@ function PaginaLogin() {
           password: senha,
         }
       ).then((response) => {
-         console.log(response.data.jwt);    
+
+     //  console.log(response.data.jwt);    
          
-         logado(response.data.jwt);
+         setToken(response.data.jwt);         
 
          navigate("/private/tarefa")       
 
       }).catch((error) => {       
+
           console.log(error);
+          
       })
       
     }            

@@ -1,5 +1,5 @@
 import PaginaCadastro from "../../pages/PaginaCadastro";
-import PaginaTarefa from "../../pages/PaginaTarefa";
+import PaginaTarefa   from "../../pages/PaginaTarefa";
 
 import ProtecterRouter from '../../security/ProtecterRouter';
 

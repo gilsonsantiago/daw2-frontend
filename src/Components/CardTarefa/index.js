@@ -16,19 +16,37 @@ function CardTarefa() {
   const [rows, setRows] = useState([])
   const [clickedRow, setClickedRow] = useState();
 
+   useEffect(() => {
+
+    lerDados();
+
+  }, [])
+
 
   const onButtonClick = (e, row) => {
     e.stopPropagation();
     setClickedRow(row);
     alert("Realmente deseja modificar o estado?");
-    console.log(clickedRow);
+    console.log("Modificar: " + clickedRow + " -" + JSON.stringify(row));
   };
 
   const onButtonDelete = (e, row) => {
     e.stopPropagation();
-    setClickedRow(row);
+    setClickedRow(row);  
     alert("Realmente deseja apagar?");
+    console.log("Deletar: " + clickedRow)
+  //  deletarTarefa(id);
   };
+
+  function deletarTarefa(id){
+    axios.delete(`http://localhost:1337/api/jobs/${id}`)
+      .then(({data }) => { 
+         console.log(data.data);
+       
+       })
+      .catch((error) => console.log(error))
+  }
+
 
   const opcoes = [
     {
@@ -99,20 +117,17 @@ function CardTarefa() {
 
   const [dado1, setDado1] = useState([]);
 
-  useEffect(() => {
-
-    lerDados();
-
-  }, [rows])
-
-
+ 
   /************************************************ */
   function lerDados() {
 
     readTarefa("")
       .then(({ data }) => {
         const da = data.data
-        const novada = da.map((d) => ({ id: d.id, nome: d.attributes.nome, descricao: d.attributes.descricao, situacao: d.attributes.si }))
+        const novada = da.map((d) => ({ id: d.id, 
+                                        nome: d.attributes.nome, 
+                                        descricao: d.attributes.descricao, 
+                                        situacao: d.attributes.si }))
         setRows(novada)
       })
       .catch((error) => console.log(error))

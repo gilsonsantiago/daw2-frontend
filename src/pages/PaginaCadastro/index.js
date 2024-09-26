@@ -10,17 +10,22 @@ import Select from '@mui/material/Select';
 import api, { createTarefa } from "../../services/api";
 
 import axios from "axios";
+import { useAuth } from "../../security/AuthProvider";
 
 function PaginaCadastro({ fechar }) {
 
    const [descricao, setDescricao] = useState("");
-   const [situacao, setSituacao] = useState("");
-   const [datacada, setDatacada] = useState("");
+   const [situacao,  setSituacao]  = useState("");
+   const [datacada,  setDatacada]  = useState("");
+   const [nome,      setNome]      = useState("");
 
    const handleChange = (event) => {
       setSituacao(event.target.value);
    };
 
+   const {setToken} = useAuth();
+
+   console.log(setToken);
 
    /************************************************ */
    function gravarDados() {
@@ -28,11 +33,12 @@ function PaginaCadastro({ fechar }) {
       const dadostarefa = {
          "data": {
             "descricao": descricao,
+            "nome" : nome,
             "datacadastro": datacada
          }
       }
 
-      console.log("dados: " + JSON.stringify(dadostarefa));
+   //   console.log("dados: " + JSON.stringify(dadostarefa));
 
       axios.post("http://localhost:1337/api/jobs",
          {
@@ -72,6 +78,20 @@ function PaginaCadastro({ fechar }) {
             value={descricao}
             variant="standard"
             onChange={(e) => setDescricao(e.target.value)}
+
+         />
+
+         <TextField
+            required
+            margin="dense"
+            id="nome"
+            name="nome"
+            label="Título"
+            type="text"
+            fullWidth
+            value={nome}
+            variant="standard"
+            onChange={(e) => setNome(e.target.value)}
 
          />
 

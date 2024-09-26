@@ -4,6 +4,7 @@ import './index.css';
 
 import Routes from './routes';
 import reportWebVitals from './reportWebVitals';
+
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './security/AuthProvider';
 
